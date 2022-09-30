@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Route, Routes, Navigate } from "react-router";
+import Home from "./pages/Home";
+import Prereq from "./pages/PrereqEntry";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+ <Routes>
+      <Route path="/Home" element={<Home />} />
+      <Route path="/Prereq" element={<Prereq />} />
+      <Route path="/" element={<Navigate to="/Home" />} />
+      <Route
+            path="*"
+            element={
+              <div>
+                <h2>404 Page not found</h2>
+              </div>
+            }
+          />
+    </Routes>
     </div>
+   
   );
 }
-
 export default App;
