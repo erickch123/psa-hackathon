@@ -8,7 +8,10 @@ export default function Navbar() {
               Home
             </a>
             <a href="/Prereq" className="mr-5 hover:text-black">
-                About
+                PreReq
+           </a>
+            <a href="/atWorkplace" className="mr-5 hover:text-black">
+                @Workplace
            </a>
           </nav>
         </div>
