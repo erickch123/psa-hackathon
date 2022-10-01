@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import './form.css';
 export default function PrereqEntry() {
 
@@ -45,14 +45,14 @@ export default function PrereqEntry() {
             PSA_supervisor: "",
             Location: "",
             Number_of_People: "",
-        })
+        });
     };
     //To emptied the form after submission
     return (
         <section>
             <h1>Prereq Page</h1>
             <h2>Form</h2>
-            <form onsubmit={onSubmit}>
+            <form onSubmit={onSubmit}>
                 <label for="date">Date:</label><br></br>
                 <input
                     type="text"
@@ -70,68 +70,68 @@ export default function PrereqEntry() {
                     value={form.Name}
                     onChange={(e) => updateForm({ Name: e.target.value })}
                 ></input><br></br>
-<label for="cmpy">Company:</label><br></br>
+                <label for="cmpy">Company:</label><br></br>
                 <input
                     type="text"
                     id="cmpy"
                     name="cmpy"
-                    value ={form.Company}
+                    value={form.Company}
                     onChange={(e) => updateForm({ Company: e.target.value })}></input><br></br>
                 <label for="purpose">Purpose:</label><br></br>
                 <input
                     type="text"
                     id="purpose"
                     name="purpose"
-                    value ={form.Purpose}
+                    value={form.Purpose}
                     onChange={(e) => updateForm({ Purpose: e.target.value })}></input><br></br>
                 <label for="arrtime">Scheduled Arrival Time:</label><br></br>
                 <input
                     type="text"
                     id="arrtime"
                     name="arrtime"
-                    value ={form.Scheduled_Arrival_Time}
+                    value={form.Scheduled_Arrival_Time}
                     onChange={(e) => updateForm({ Scheduled_Arrival_Time: e.target.value })}></input><br></br>
                 <label for="deptime">Scheduled Departure Time:</label><br></br>
                 <input
                     type="text"
                     id="deptime"
                     name="deptime"
-                    value ={form.Scheduled_Departure_Time}
+                    value={form.Scheduled_Departure_Time}
                     onChange={(e) => updateForm({ Scheduled_Departure_Time: e.target.value })}
-                    ></input><br></br>
+                ></input><br></br>
                 <label for="phonenum">Phone Number:</label><br></br>
                 <input
                     type="text"
                     id="phonenum"
                     name="phonenum"
-                    value ={form.Phone_Number}
+                    value={form.Phone_Number}
                     onChange={(e) => updateForm({ Phone_Number: e.target.value })}></input><br></br>
                 <label for="PSAsup">PSA Supervisor:</label><br></br>
                 <input
                     type="text"
                     id="PSAsup"
                     name="PSAsup"
-                    value ={form.PSA_supervisor}
+                    value={form.PSA_supervisor}
                     onChange={(e) => updateForm({ PSA_supervisor: e.target.value })}
-                    ></input><br></br>
+                ></input><br></br>
                 <label for="loc">Location:</label><br></br>
                 <input
                     type="text"
                     id="loc"
                     name="loc"
-                    value ={form.Location}
+                    value={form.Location}
                     onChange={(e) => updateForm({ Location: e.target.value })}>
-                    </input><br></br>
+                </input><br></br>
                 <label for="ppl">Number of People:</label><br></br>
-               < input
+                < input
                     type="text"
                     id="ppl"
                     name="ppl"
-                    value ={form.Number_of_People}
+                    value={form.Number_of_People}
                     onChange={(e) => updateForm({ Number_of_People: e.target.value })}
-                    ></input><br></br><br></br>           
+                ></input><br></br><br></br>
                 <input
-                    id = "submitbutton"
+                    id="submitbutton"
                     type="submit"
                     value="Submit"></input>
             </form>

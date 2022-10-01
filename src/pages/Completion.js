@@ -13,13 +13,14 @@ export default function Completion() {
     async function onSubmit(e) {
         e.preventDefault();
         const completedForm = { ...form };
-        await fetch("http://localhost:5000/Dashboard/AddCompletion", {
+        const testtt = await fetch("http://localhost:5000/Dashboard/AddCompletion", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(completedForm),
         })
+        console.log(testtt)
         .catch(error => {
           window.alert(error);
           return;
