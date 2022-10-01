@@ -10,7 +10,7 @@
                  "Phone_Number": 93249324,
                  "PSA_supervisor": "Tom Livingston",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 },
     "testlog2": {"Date": "2022-10-02",
                  "Name":"Tom Hiddleston",
@@ -23,7 +23,7 @@
                  "Phone_Number": 93249024,
                  "PSA_supervisor": "Jerry Hanks",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 },
     "testlog3": {"Date": "2022-10-02",
                  "Name":"Peter Lenon",
@@ -36,7 +36,7 @@
                  "Phone_Number": 93240924,
                  "PSA_supervisor": "Jack Pinn",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 
                 },
     "testlog4": {"Date": "2022-10-02",
@@ -50,7 +50,7 @@
                  "Phone_Number": 93249024,
                  "PSA_supervisor": "Jerry Hanks",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 
                 },
     "testlog5": {"Date": "2022-10-02",
@@ -64,7 +64,7 @@
                  "Phone_Number": 90081234,
                  "PSA_supervisor": "Pepper Potts",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 
                 },
     "testlog6": {"Date": "2022-10-02",
@@ -78,7 +78,7 @@
                  "Phone_Number": 84473622,
                  "PSA_supervisor": "Chua Ming Tian",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 
                 },
     "testlog7": {"Date": "2022-10-02",
@@ -92,7 +92,7 @@
                  "Phone_Number": 84473622,
                  "PSA_supervisor": "Chua Ming Tian",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 
                 },
     "testlog8": {"Date": "2022-10-02",
@@ -105,7 +105,7 @@
                  "Phone_Number": 84473622,
                  "PSA_supervisor": "Chua Ming Tian",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 
                 },
     "testlog9": {"Date": "2022-10-02",
@@ -119,7 +119,7 @@
                  "Phone_Number": 93827465,
                  "PSA_supervisor": "Kang Lew Peng",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 
                 },
     "testlog10": {"Date": "2022-10-02",
@@ -133,6 +133,6 @@
                  "Phone_Number": 93827465,
                  "PSA_supervisor": "Kang Lew Peng",
                  "Location":"Building 2",
-                 "Number of People":5
+                 "Number_of_People":5
                 }
 }

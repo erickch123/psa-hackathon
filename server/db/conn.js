@@ -12,7 +12,7 @@ module.exports = {
       // Verify we got a good "db" object
       if (db)
       {
-        _db = db.db("PsaHackathon");
+        _db = db.db("PSAHackathon");
         console.log("Successfully connected to MongoDB."); 
       }
       return callback(err);
