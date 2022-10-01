@@ -1,4 +1,6 @@
 import React from "react";
+import './form.css';
+
 export default function PrereqEntry() {
     return (
         <section>
@@ -26,7 +28,7 @@ export default function PrereqEntry() {
                 <label for="ppl">Number of People:</label><br></br>
                 <input type="text" id="ppl" name="ppl"></input><br></br><br></br>
 
-                <input type="submit" value="Submit"></input>
+                <input id="submitbutton" type="submit" value="Submit"></input>
                 
             </form>
         </section>

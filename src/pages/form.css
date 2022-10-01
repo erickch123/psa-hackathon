@@ -1,0 +1,10 @@
+section {
+    text-align: center;
+}
+
+#submitbutton {
+    padding: 10px;
+    border: 2px solid Black;
+    color: white;
+    background-color: #4b4099;
+}

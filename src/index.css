@@ -13,18 +13,17 @@ code {
 }
 
 .topnav {
-  background: rgb(63, 42, 122);
-  padding: 1em;
+  background: #4b4099;
+  padding: 1.25em;
 }
-#navibar {
+.navibar {
+  font-size: 20px;
   color: white;
-  padding-left: 1em;
-  padding-right: 1em;
+  padding: 1em;
   text-decoration: none;
 }
 
-#navibar:hover {
-  background-color: black;
-  padding: 1em;
-
+.navibar:hover {
+  background: black;
+  width: 100%;
 }

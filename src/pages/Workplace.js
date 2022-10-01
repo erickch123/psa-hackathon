@@ -12,7 +12,7 @@ export default function Workplace() {
                 <input type="text" id="phoneno" name="phoneno"></input><br></br>
                 <label for="sup">Supervisor in-charge:</label><br></br>
                 <input type="text" id="sup" name="sup"></input><br></br><br></br>
-                <input type="submit" value="Submit"></input>
+                <input id="submitbutton" type="submit" value="Submit"></input>
             </form>
 
 
