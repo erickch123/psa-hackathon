@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router";
 import Home from "./pages/Home";
 import Prereq from "./pages/PrereqEntry";
 import Workplace from "./pages/Workplace";
+import Completion from "./pages/Completion";
 import Navbar from "./components/Navbar";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
       <Route path="/Prereq" element={<Prereq />} />
       <Route path="/" element={<Navigate to="/Home" />} />
       <Route path="/atworkplace" element={<Workplace />} />
+      <Route path="/Completion" element={<Completion />} />
       <Route
             path="*"
             element={
