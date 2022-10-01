@@ -62,7 +62,7 @@ export default function Completion() {
             <input type="text" id="sup" name="sup"  value={form.PSA_supervisor} onChange={(e) => updateForm({ PSA_supervisor: e.target.value })} ></input><br></br><br></br>
             <input type="checkbox" id="visitorout" name="visitorout" value="otw"></input>
             <label for="visitorout"> Your visitor is on the way out of the vicinity</label><br></br><br></br>
-            <input type="submit" value="Submit"></input>
+            <input id="submitbutton" type="submit" value="Submit"></input>
         </form>
         </section>
     );

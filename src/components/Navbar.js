@@ -1,21 +1,22 @@
 import React from "react";
+
 export default function Navbar() {
     return (
       <header>
         <div>
           <nav class="topnav">
-          <a id="navibar" href="/Home">
-            Home
-          </a>
-          <a id="navibar" href="/Prereq">
-            PreReq
-          </a>
-          <a id="navibar" href="/atWorkplace">
-            @Workplace
-          </a>
-          <a id="navibar" href="/Completion">
-            Completion
-          </a>
+            <a class="navibar" href="/Home">
+              Home
+            </a>
+            <a class="navibar" href="/Prereq">
+              PreReq
+            </a>
+            <a class="navibar" href="/atWorkplace">
+              @Workplace
+            </a>
+            <a class="navibar" href="/Completion">
+              Completion
+            </a>
           </nav>
         </div>
       </header>
