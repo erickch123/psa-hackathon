@@ -8,10 +8,10 @@
                  "Actual_Arrival_Time": 1130,
                  "Actual_End_Time": 1330,
                  "Phone_Number": 93249324,
-                 "PSA_supervisor": "Tom Livingston"
+                 "PSA_supervisor": "Tom Livingston",
+                 "Location":"Building 2",
+                 "Number of People":5,
                 },
-                // need to add location also maybe
-                // no. of ppl coming
     "testlog2": {"Date": "2022-10-02",
                  "Name":"Tom Hiddleston",
                  "Company":"Portison Company",
@@ -21,7 +21,9 @@
                  "Actual_Arrival_Time": 1000,
                  "Actual_End_Time": 1500,
                  "Phone_Number": 93249024,
-                 "PSA_supervisor": "Jerry Hanks"
+                 "PSA_supervisor": "Jerry Hanks",
+                 "Location":"Building 2",
+                 "Number of People":5
                 },
     "testlog3": {"Date": "2022-10-02",
                  "Name":"Peter Lenon",
@@ -32,7 +34,10 @@
                  "Actual_Arrival_Time": 0800,
                  "Actual_End_Time": 1200,
                  "Phone_Number": 93240924,
-                 "PSA_supervisor": "Jack Pinn"
+                 "PSA_supervisor": "Jack Pinn",
+                 "Location":"Building 2",
+                 "Number of People":5
+                
                 },
     "testlog4": {"Date": "2022-10-02",
                  "Name":"Finn Tucker",
@@ -43,7 +48,10 @@
                  "Actual_Arrival_Time": 1000,
                  "Actual_End_Time": 1500,
                  "Phone_Number": 93249024,
-                 "PSA_supervisor": "Jerry Hanks"
+                 "PSA_supervisor": "Jerry Hanks",
+                 "Location":"Building 2",
+                 "Number of People":5
+                
                 },
     "testlog5": {"Date": "2022-10-02",
                  "Name":"John Chua",
@@ -54,7 +62,10 @@
                  "Actual_Arrival_Time": 1130,
                  "Actual_End_Time": 1415,
                  "Phone_Number": 90081234,
-                 "PSA_supervisor": "Pepper Potts"
+                 "PSA_supervisor": "Pepper Potts",
+                 "Location":"Building 2",
+                 "Number of People":5
+                
                 },
     "testlog6": {"Date": "2022-10-02",
                  "Name":"Macky Jones",
@@ -65,7 +76,10 @@
                  "Actual_Arrival_Time": 1000,
                  "Actual_End_Time": 1730,
                  "Phone_Number": 84473622,
-                 "PSA_supervisor": "Chua Ming Tian"
+                 "PSA_supervisor": "Chua Ming Tian",
+                 "Location":"Building 2",
+                 "Number of People":5
+                
                 },
     "testlog7": {"Date": "2022-10-02",
                  "Name":"Tony Lim",
@@ -76,7 +90,10 @@
                  "Actual_Arrival_Time": 1000,
                  "Actual_End_Time": 1730,
                  "Phone_Number": 84473622,
-                 "PSA_supervisor": "Chua Ming Tian"
+                 "PSA_supervisor": "Chua Ming Tian",
+                 "Location":"Building 2",
+                 "Number of People":5
+                
                 },
     "testlog8": {"Date": "2022-10-02",
                  "Company":"PKS Company",
@@ -86,7 +103,10 @@
                  "Actual_Arrival_Time": 1000,
                  "Actual_End_Time": 1730,
                  "Phone_Number": 84473622,
-                 "PSA_supervisor": "Chua Ming Tian"
+                 "PSA_supervisor": "Chua Ming Tian",
+                 "Location":"Building 2",
+                 "Number of People":5
+                
                 },
     "testlog9": {"Date": "2022-10-02",
                  "Name":"Bob Willy",
@@ -97,7 +117,10 @@
                  "Actual_Arrival_Time": 1000,
                  "Actual_End_Time": 1230,
                  "Phone_Number": 93827465,
-                 "PSA_supervisor": "Kang Lew Peng"
+                 "PSA_supervisor": "Kang Lew Peng",
+                 "Location":"Building 2",
+                 "Number of People":5
+                
                 },
     "testlog10": {"Date": "2022-10-02",
                  "Name":"Bob Willy",
@@ -108,6 +131,8 @@
                  "Actual_Arrival_Time": 1000,
                  "Actual_End_Time": 1230,
                  "Phone_Number": 93827465,
-                 "PSA_supervisor": "Kang Lew Peng"
+                 "PSA_supervisor": "Kang Lew Peng",
+                 "Location":"Building 2",
+                 "Number of People":5
                 }
 }

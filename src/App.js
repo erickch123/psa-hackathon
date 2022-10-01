@@ -2,10 +2,13 @@ import React from 'react';
 import { Route, Routes, Navigate } from "react-router";
 import Home from "./pages/Home";
 import Prereq from "./pages/PrereqEntry";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
+    
     <div>
+      <Navbar/>
  <Routes>
       <Route path="/Home" element={<Home />} />
       <Route path="/Prereq" element={<Prereq />} />
