@@ -6,9 +6,9 @@ import Workplace from "./pages/Workplace";
 import Completion from "./pages/Completion";
 import Navbar from "./components/Navbar";
 
+
 function App() {
-  return (
-    
+  return (    
     <div>
       <Navbar/>
  <Routes>
