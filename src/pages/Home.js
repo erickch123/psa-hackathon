@@ -10,11 +10,20 @@ const DashboardHeader = (props) => (
       <td>{props.record.Scheduled_Departure_Time}</td>
       <td>{props.record.Actual_Arrival_Time}</td>
       <td>{props.record.Actual_End_Time}</td>
-      <td>{props.record.Actual_Arrival_Time}</td>
       <td>{props.record.Phone_Number}</td>
+      <td>{props.record.PSA_supervisor}</td>
       <td>{props.record.Location}</td>
       <td>{props.record.Number_of_People}</td>
-    
+      <td>{props.record.Status}</td>
+      <td>
+   <button className="btn btn-link"
+       onClick={() => {
+         props.editRecord(props.record.name,props.record.Company);
+       }}
+     >
+       Out
+     </button>
+     </td>
     </tr>
    );
 
@@ -47,11 +56,31 @@ function dashboardRecordList() {
     return dbrecord.map((records) => {
       return (
         <DashboardHeader
+        editRecord={() => editRecord(records.Name,records.Company)}
           record={records}
         />
       );
     });
 }
+async function editRecord(name,company) {
+    const response =  await fetch("http://localhost:5000/Dashboard/Checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+            Name:name,
+            Company:company
+        },
+      })
+
+    if (!response.ok) {
+      const message = `An error occurred: ${response.statusText}`;
+      window.alert(message);
+      return;
+    }
+  }
+
 
 return (
     <div>
@@ -65,13 +94,14 @@ return (
       <td>Purpose</td>
       <td>Scheduled_Arrival_Time</td>
       <td>Scheduled_Departure_Time</td>
-      <td>props.record.Actual_Arrival_Time</td>
-      <td>props.record.Actual_End_Time</td>
-      <td>props.record.Actual_Arrival_Time</td>
-      <td>props.record.Phone_Number</td>
-      <td>props.record.Location</td>
-      <td>props.record.Number_of_People</td>
-            
+      <td>Actual_Arrival_Time</td>
+      <td>Actual_End_Time</td>
+      <td>Actual_Arrival_Time</td>
+      <td>PSA_Supervisor</td>
+      <td>Location</td>
+      <td>Number_of_People</td>
+      <td>Current Status</td>
+      <td>Confirm Checkout</td>   
           </tr>
         </thead>
         <tbody>{dashboardRecordList()}</tbody>
