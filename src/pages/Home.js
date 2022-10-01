@@ -84,7 +84,7 @@ async function editRecord(name,company) {
 
 return (
     <div>
-      <h3>Loyalty Program Provider List</h3>
+      <h3>PSA Visitors Dashboard</h3>
       <table className="table table-striped" style={{ marginTop: 20 }}>
         <thead>
           <tr>

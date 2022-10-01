@@ -41,10 +41,13 @@ dashboardRoutes.route("/Checkout").post(function (req, res) {
     let db_connect = dbo.getDb();
     let myquery = { 
         Name: req.body.Name,
-        Company: req.body.Company }; 
+        Company: req.body.Company,
+        Status: "Completion" 
+    }; 
     let newvalues = {   
       $set: {     
-        Status:"Completed",
+        Status:"Checked-Out",
+        Actual_End_Time: getCurrentTime()
       }, 
      }
     db_connect
@@ -59,4 +62,26 @@ dashboardRoutes.route("/Checkout").post(function (req, res) {
             }
           });
 });
+
+function getCurrentTime(){
+    var today = new Date();
+    var hours = today.getHours()
+    var minutes = today.getMinutes()
+    if(hours<10){
+        hours = "0"+hours
+    }
+    if(minutes<10){
+        minutes = "0"+minutes
+    }
+    return hours+minutes
+}
+function getTodayDate(){
+    var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+            today = yyyy + '-' + mm + '-' + dd;
+    return today
+
+}
 module.exports = dashboardRoutes;
