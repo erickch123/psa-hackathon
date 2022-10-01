@@ -11,3 +11,20 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.topnav {
+  background: rgb(63, 42, 122);
+  padding: 1em;
+}
+#navibar {
+  color: white;
+  padding-left: 1em;
+  padding-right: 1em;
+  text-decoration: none;
+}
+
+#navibar:hover {
+  background-color: black;
+  padding: 1em;
+
+}

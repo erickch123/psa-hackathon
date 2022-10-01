@@ -1,0 +1,18 @@
+table {
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+td {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.tablehead {
+    background-color: rgb(63, 42, 122);
+    color: white;
+}
+
+#entries:nth-child(odd) {
+    background-color: lightgrey;
+}

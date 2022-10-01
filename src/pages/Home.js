@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import './Home.css';
 
 const DashboardHeader = (props) => (
-    <tr>
+    <tr id="entries">
       <td>{props.record.Date}</td>
       <td>{props.record.Name}</td>
       <td>{props.record.Company}</td>
@@ -85,8 +86,8 @@ async function editRecord(name,company) {
 return (
     <div>
       <h3>PSA Visitors Dashboard</h3>
-      <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
+      <table class="dashtable"className="table table-striped" style={{ marginTop: 0 }}>
+        <thead class="tablehead">
           <tr>
           <td>Date</td>
       <td>Name</td>
