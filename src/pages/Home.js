@@ -68,10 +68,10 @@ async function editRecord(name,company) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: {
+        body: JSON.stringify({
             Name:name,
             Company:company
-        },
+        })
       })
 
     if (!response.ok) {
