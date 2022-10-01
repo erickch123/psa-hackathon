@@ -3,6 +3,15 @@ export default function Workplace() {
     return (
         <section>
             <h1>Workplace Page</h1>
+            <form>
+                <label for="visitor">Visitor Name:</label><br></br>
+                <input type="text" id="visitor" name="visitor"></input><br></br>
+                <label for="phoneno">Phone number:</label><br></br>
+                <input type="text" id="phoneno" name="phoneno"></input><br></br>
+                <label for="sup">Supervisor in-charge:</label><br></br>
+                <input type="text" id="sup" name="sup"></input><br></br><br></br>
+                <input type="submit" value="Submit"></input>
+            </form>
 
 
         </section>

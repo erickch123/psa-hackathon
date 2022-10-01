@@ -24,7 +24,7 @@ export default function PrereqEntry() {
                 <label for="loc">Location:</label><br></br>
                 <input type="text" id="loc" name="loc"></input><br></br>
                 <label for="ppl">Number of People:</label><br></br>
-                <input type="text" id="ppl" name="ppl"></input><br></br>
+                <input type="text" id="ppl" name="ppl"></input><br></br><br></br>
 
                 <input type="submit" value="Submit"></input>
                 
