@@ -1,6 +1,8 @@
 const express = require("express");
+const twilio = require("twilio");
 const dashboardRoutes = express.Router();
 const dbo = require("../db/conn");
+const messaging = require('../twilio')
 
 dashboardRoutes.route("/").get(function (req, res) {
     let db_connect = dbo.getDb();
@@ -61,7 +63,9 @@ dashboardRoutes.route("/AddCompletion").post(function (req, res) {
                 res.send("Status Changed from Waiting-For-Dismissal to Walking-Out");
               console.log("Status Changed from Waiting-For-Dismissal to Walking-Out")
             }
-          });
+          })
+        
+          ;
 });
 
 dashboardRoutes.route("/AddWorkplace").post(function (req, res) {
@@ -99,6 +103,11 @@ dashboardRoutes.route("/Checkin").post(function (req, res) {
         Company: req.body.Company,
         Status: "Registered" 
     }; 
+    let myquery_updated = { 
+      Name: req.body.Name,
+      Company: req.body.Company,
+      Status: "At Workplace" 
+  }; 
     let newvalues = {   
       $set: {     
         Status:"At Workplace",
@@ -112,11 +121,27 @@ dashboardRoutes.route("/Checkin").post(function (req, res) {
               res.status(400).send('error updating data with id ${myquery.id}!');
             }
             else{
-            res.send("Status Changed from to Completion to Checked-Out")
-              console.log("Status Changed from to Completion to Checked-Out")
+          
+            res.send("1 Status Changed from to Completion to Checked-Out")
+            // return
+            console.log("Status Changed from Registered to At Workplace")
             }
-          });
+          })
+        
 });
+
+// .then(
+//   findOne(myquery_updated, function (err, result) {
+// if (err) throw err;
+// if(result.Status=="At Workplace"){
+  // twilio.sendCheckinMsg();
+//   res.send("Status Changed from to Completion to Checked-Out")
+// }
+// else{
+//   res.send("Wrong")
+// };
+// })
+// )
 
 dashboardRoutes.route("/Checkout").post(function (req, res) {
   let db_connect = dbo.getDb();
@@ -157,6 +182,23 @@ dashboardRoutes.route("/getStatus").post(function (req, res) {
           res.json(result.Status);
         });
    });
+
+   dashboardRoutes.route("/getArrivalDate").post(function (req, res) {
+    let db_connect = dbo.getDb();
+    let myquery = { Name: req.body.Name
+                    };
+    db_connect
+        .collection("Dashboard")
+        .findOne(myquery, function (err, result) {
+          if (err) throw err;
+          res.json({
+            "arrival" : result.Actual_Arrival_Time,
+            "date" : result.Date
+          });
+          console.log("arrival date")
+        });
+   });
+
 
 function getCurrentTime(){
     var today = new Date();
