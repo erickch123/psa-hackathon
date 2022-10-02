@@ -29,33 +29,40 @@ export default function Completion() {
   }
   return (
     <section>
-      <h1>Completion Page</h1>
+      <div class = "form">
+            <div class ="title">
+                Completion Confirmation
+            </div>
       <form onSubmit={onSubmit}>
-        <label for="visitor">Visitor Name:</label><br></br>
-        <input
+        <label class="placeholder"for="visitor"></label><br></br>
+        <input class="input"
           type="text"
           id="visitor"
           name="visitor"
           value={form.Name}
+          placeholder = "Visitor Name"
           onChange={(e) => updateForm({ Name: e.target.value })}></input><br></br>
-        <label for="sup">Supervisor in-charge:</label><br></br>
-        <input
+        <label class="placeholder"for="sup"></label><br></br>
+        <input class="input"
           type="text"
           id="sup"
           name="sup"
+          placeholder="Supervisor in-charge"
           value={form.PSA_supervisor}
-          onChange={(e) => updateForm({ PSA_supervisor: e.target.value })} ></input><br></br><br></br>
-        <label for="phone">Phone Number:</label><br></br>
-        <input
+          onChange={(e) => updateForm({ PSA_supervisor: e.target.value })} ></input><br></br>
+        <label class="placeholder" for="phone"></label><br></br>
+        <input class="input"
           type="text"
           id="phone"
           name="phone"
+          placeholder="Phone Number"
           value={form.Phone_Number}
           onChange={(e) => updateForm({ Phone_Number: e.target.value })} ></input><br></br><br></br>
         <input type="checkbox" id="visitorout" name="visitorout" value="otw"></input>
-        <label for="visitorout"> Your visitor is on the way out of the vicinity</label><br></br><br></br>
-        <input id="submitbutton" type="submit" value="Submit"></input>
+        <label class ="endbox" for="visitorout" > Your visitor is on the way out of the vicinity</label><br></br><br></br>
+        <input id="submitbutton" class = "submit" type="submit" value="Submit"></input>
       </form>
+      </div>
     </section>
   );
 }

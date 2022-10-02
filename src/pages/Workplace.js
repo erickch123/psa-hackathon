@@ -33,7 +33,7 @@ export default function Workplace() {
             Phone_Number: "",
             PSA_supervisor: "",
         })
-        
+
 
         // const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
         //     method: "POST",
@@ -58,46 +58,60 @@ export default function Workplace() {
     }
     return (
         <section>
-            <h1>Workplace Page</h1>
-            <form onSubmit={onSubmit}>
-                <label for="visitor">Visitor Name:</label><br></br>
-                <input
-                    type="text"
-                    id="visitor"
-                    name="visitor"
-                    value={form.Name}
-                    onChange={(e) => updateForm({ Name: e.target.value })}
-                ></input><br></br>
-                <label for="com">Company:</label><br></br>
-                <input
-                    type="text"
-                    id="com"
-                    name="com"
-                    value={form.Company}
-                    onChange={(e) => updateForm({ Company: e.target.value })}
-                ></input><br></br>
-                <label for="phoneno">Phone number:</label><br></br>
-                <input
-                    type="text"
-                    id="phoneno"
-                    name="phoneno"
-                    value={form.Phone_Number}
-                    onChange={(e) => updateForm({ Phone_Number: e.target.value })}
-                ></input><br></br>
-                <label for="sup">Supervisor in-charge:</label><br></br>
-                <input
-                    type="text"
-                    id="sup"
-                    name="sup"
-                    value={form.PSA_supervisor}
-                    onChange={(e) => updateForm({ PSA_supervisor: e.target.value })}
-                ></input><br></br><br></br>
-                <input
-                    id="submitbutton"
-                    type="submit"
-                    value="Submit"
-                ></input>
-            </form>
+            <div class="form">
+                <div class="title">
+                    Workplace Completion Approval
+                </div>
+                <form onSubmit={onSubmit}>
+                    <label class="placeholder" for="visitor"></label><br></br>
+                    <input
+                        class="input"
+                        type="text"
+                        id="visitor"
+                        name="visitor"
+                        placeholder="Visitor Name"
+                        value={form.Name}
+                        onChange={(e) => updateForm({ Name: e.target.value })}
+                    ></input><br></br>
+                    <label class="placeholder" for="com"></label><br></br>
+                    <input
+                        class="input"
+                        type="text"
+                        id="com"
+                        name="com"
+                        placeholder="Company"
+                        value={form.Company}
+                        onChange={(e) => updateForm({ Company: e.target.value })}
+                    ></input><br></br>
+                    <label class="placeholder" for="phoneno"></label><br></br>
+                    <input
+                        class="input"
+                        type="text"
+                        id="phoneno"
+                        name="phoneno"
+                        placeholder="Phone number"
+                        value={form.Phone_Number}
+                        onChange={(e) => updateForm({ Phone_Number: e.target.value })}
+                    ></input><br></br>
+                    <label class="placeholder" for="sup"></label><br></br>
+                    <input
+                        class="input"
+                        type="text"
+                        id="sup"
+                        name="sup"
+                        placeholder="Supervisor in-charge"
+                        value={form.PSA_supervisor}
+                        onChange={(e) => updateForm({ PSA_supervisor: e.target.value })}
+                    ></input><br></br><br></br>
+                    <input
+                        class="input"
+                        id="submitbutton"
+                        type="submit"
+                        value="Submit"
+                    ></input>
+                </form>
+            </div>
+
 
 
         </section>
