@@ -15,12 +15,21 @@ td {
 
 .tablehead {
     background-color: #4b4099;
+    font-weight: 600;
     color: white;
+  font-family: sans-serif;
+
 }
 
 #entries:nth-child(odd) {
-    background-color: lightgrey;
+    background-color: #282c4e;
+    color:white
 }
+#entries:nth-child(even) {
+    background-color:#15172b;
+    color:white
+}
+
 
 #inbutton, #outbutton {
     width: 50px;

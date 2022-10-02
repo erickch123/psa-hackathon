@@ -34,27 +34,6 @@ export default function Workplace() {
             PSA_supervisor: "",
         })
 
-
-        // const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(completedForm),
-        // }).catch(error => {
-        //     window.alert(error);
-        //     return;
-        // })
-        // console.log(statusReceived);
-        // if (statusReceived == "At Workplace" || "Registered") {
-        //     console.log("if completion")
-        //     window.alert("Status Changed to At Workplace")
-        // }
-        // else {
-        //     console.log("else")
-        //     window.alert("Status is not at Workplace")
-        // }
-
     }
     return (
         <section>

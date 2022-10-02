@@ -169,33 +169,16 @@ export default function Home() {
       window.alert(message);
       return;
     }
-  //   const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(
-  //      { Name: name
-  //     }),
-  //   }).catch(error => {
-  //     window.alert(error);
-  //     return;
-  //   })
-  // console.log(statusReceived);
-  // if((statusReceived=="Walking-Out") || (statusReceived=="Checked-Out")){
-  //     console.log("if walking-out/checkout")
-  //     window.alert("Status Changed to Checkout")
-  // }
-  // else{
-  //     console.log("else")
-  //     window.alert("Status is not at Walking Out Yet")
-  // }
+  
   }
 
 
   return (
+    <section class="backgrd">
+
+ 
     <div>
-      <h3>PSA Visitors Dashboard</h3>
+      <div class="title">PSA Visitors Dashboard</div>
       <table class="dashtable" className="table table-striped" style={{ marginTop: 0 }}>
         <thead class="tablehead">
           <tr>
@@ -219,5 +202,6 @@ export default function Home() {
         <tbody>{dashboardRecordList()}</tbody>
       </table>
     </div>
+    </section>
   );
 }

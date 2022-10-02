@@ -29,6 +29,7 @@ export default function Completion() {
   }
   return (
     <section>
+      
       <div class = "form">
             <div class ="title">
                 Completion Confirmation
