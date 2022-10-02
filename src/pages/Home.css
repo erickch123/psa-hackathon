@@ -1,11 +1,16 @@
 table {
     border-collapse: collapse;
     border: 1px solid;
+    table-layout: fixed; 
+    width: 100%;
 }
 
 td {
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    word-wrap: break-word;
+    text-align: center;
+
 }
 
 .tablehead {
@@ -15,4 +20,25 @@ td {
 
 #entries:nth-child(odd) {
     background-color: lightgrey;
+}
+
+#inbutton, #outbutton {
+    width: 50px;
+}
+
+#inbutton {
+    background-color: red;
+}
+
+#outbutton {
+    background-color: green;
+}
+
+#inbutton:hover, #outbutton:hover {
+    font-weight: bold;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+#inbutton:active, #outbutton:active {
+    background-color:grey;
 }

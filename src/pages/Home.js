@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Home.css';
+import '../components/timer.js'
 
 const DashboardHeader = (props) => (
     <tr id="entries">
@@ -16,18 +17,28 @@ const DashboardHeader = (props) => (
       <td>{props.record.Location}</td>
       <td>{props.record.Number_of_People}</td>
       <td>{props.record.Status}</td>
+      <td id="timer"></td>
       <td>
-   <button className="btn btn-link"
+      <button id="inbutton" className="btn btn-link"
+    //   EDIT THIS FUNCTION
+       onClick={() => {
+         props.editRecord(props.record.name,props.record.Company);
+       }}
+     >
+       In
+        </button>
+        <button id="outbutton" className="btn btn-link"
        onClick={() => {
          props.editRecord(props.record.name,props.record.Company);
        }}
      >
        Out
-     </button>
+        </button>
      </td>
     </tr>
    );
 
+   
 
 export default function Home() {
     const [dbrecord, setDbrecord] = useState([]);
@@ -102,6 +113,7 @@ return (
       <td>Location</td>
       <td>Number_of_People</td>
       <td>Current Status</td>
+      <td>Timer</td>
       <td>Confirm Checkout</td>   
           </tr>
         </thead>
