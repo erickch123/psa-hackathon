@@ -12,7 +12,7 @@ export default function Navbar() {
               PreReq
             </a>
             <a class="navibar" href="/atWorkplace">
-              @Workplace
+              At Workplace
             </a>
             <a class="navibar" href="/Completion">
               Completion
