@@ -1,5 +1,4 @@
 const express = require("express");
-const twilio = require("twilio");
 const dashboardRoutes = express.Router();
 const dbo = require("../db/conn");
 const messaging = require('../twilio')
@@ -41,59 +40,6 @@ dashboardRoutes.route("/add").post(function (req, response) {
 
 
 
-dashboardRoutes.route("/AddCompletion").post(function (req, res) {
-    let db_connect = dbo.getDb();
-    let myquery = { 
-        Name: req.body.Name,
-        PSA_supervisor: req.body.PSA_supervisor,
-        Status: "Waiting-For-Dismissal" 
-    }; 
-    let newvalues = {   
-      $set: {     
-        Status:"Walking-Out"
-      }, 
-     }
-    db_connect
-        .collection("Dashboard")
-        .updateOne(myquery,newvalues,function(err,result){
-            if (err){
-              res.status(400).send('error updating data with id ${myquery.id}!');
-            }
-            else{
-                res.send("Status Changed from Waiting-For-Dismissal to Walking-Out");
-              console.log("Status Changed from Waiting-For-Dismissal to Walking-Out")
-            }
-          })
-        
-          ;
-});
-
-dashboardRoutes.route("/AddWorkplace").post(function (req, res) {
-    let db_connect = dbo.getDb();
-    let myquery = { 
-        Name: req.body.Name,
-        Company:req.body.Company,
-        Phone_Number: req.body.Phone_Number,
-        PSA_supervisor: req.body.PSA_supervisor,
-        Status: "At Workplace"
-    }; 
-    let newvalues = {   
-      $set: {     
-        Status:"Waiting-For-Dismissal"
-      }, 
-     }
-    db_connect
-        .collection("Dashboard")
-        .updateOne(myquery,newvalues,function(err,result){
-            if (err){
-              res.status(400).send('error updating data with id ${myquery.id}!');
-            }
-            else{
-                res.send("Status Changed from from At Workplace to Waiting-For-Dismissal");
-              console.log("Status Changed from from At Workplace to Waiting-For-Dismissal")
-            }
-          });
-});
 
 
 dashboardRoutes.route("/Checkin").post(function (req, res) {
@@ -101,6 +47,7 @@ dashboardRoutes.route("/Checkin").post(function (req, res) {
     let myquery = { 
         Name: req.body.Name,
         Company: req.body.Company,
+        Phone_Number: req.body.Phone_Number,
         Status: "Registered" 
     }; 
     let myquery_updated = { 
@@ -121,7 +68,8 @@ dashboardRoutes.route("/Checkin").post(function (req, res) {
               res.status(400).send('error updating data with id ${myquery.id}!');
             }
             else{
-          
+            console.log(["+65"+req.body.Phone_Number])
+            messaging.sendCheckinMsg(["+65"+req.body.Phone_Number])
             res.send("1 Status Changed from to Completion to Checked-Out")
             // return
             console.log("Status Changed from Registered to At Workplace")
@@ -129,25 +77,71 @@ dashboardRoutes.route("/Checkin").post(function (req, res) {
           })
         
 });
+dashboardRoutes.route("/AddWorkplace").post(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { 
+      Name: req.body.Name,
+      Company:req.body.Company,
+      Phone_Number: req.body.Phone_Number,
+      PSA_supervisor: req.body.PSA_supervisor,
+      Status: "At Workplace"
+  }; 
+  let newvalues = {   
+    $set: {     
+      Status:"Waiting-For-Dismissal"
+    }, 
+   }
+  db_connect
+      .collection("Dashboard")
+      .updateOne(myquery,newvalues,function(err,result){
+          if (err){
+            res.status(400).send('error updating data with id ${myquery.id}!');
+          }
+          else{
+              res.send("Status Changed from from At Workplace to Waiting-For-Dismissal");
+              messaging.sendWorkplaceMsg(["+65"+req.body.Phone_Number])
+            console.log("Status Changed from from At Workplace to Waiting-For-Dismissal")
+          }
+        });
+});
 
-// .then(
-//   findOne(myquery_updated, function (err, result) {
-// if (err) throw err;
-// if(result.Status=="At Workplace"){
-  // twilio.sendCheckinMsg();
-//   res.send("Status Changed from to Completion to Checked-Out")
-// }
-// else{
-//   res.send("Wrong")
-// };
-// })
-// )
+
+dashboardRoutes.route("/AddCompletion").post(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { 
+      Name: req.body.Name,
+      PSA_supervisor: req.body.PSA_supervisor,
+      Phone_Number:req.body.Phone_Number,
+      Status: "Waiting-For-Dismissal" 
+  }; 
+  let newvalues = {   
+    $set: {     
+      Status:"Walking-Out"
+    }, 
+   }
+  db_connect
+      .collection("Dashboard")
+      .updateOne(myquery,newvalues,function(err,result){
+          if (err){
+            res.status(400).send('error updating data with id ${myquery.id}!');
+            
+          }
+          else{
+              res.send("Status Changed from Waiting-For-Dismissal to Walking-Out");
+              messaging.sendCompletedMsg(["+65"+req.body.Phone_Number])
+            console.log("Status Changed from Waiting-For-Dismissal to Walking-Out")
+          }
+        })
+      
+        ;
+});
 
 dashboardRoutes.route("/Checkout").post(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { 
       Name: req.body.Name,
       Company: req.body.Company,
+      Phone_Number: req.body.Phone_Number,
       Status: "Walking-Out" 
   }; 
   let newvalues = {   
@@ -164,6 +158,7 @@ dashboardRoutes.route("/Checkout").post(function (req, res) {
           }
           else{
           res.send("Status Changed from to Completion to Checked-Out")
+          messaging.sendOutMsg(["+65"+req.body.Phone_Number])
             console.log("Status Changed from to Completion to Checked-Out")
           }
         });
@@ -182,7 +177,6 @@ dashboardRoutes.route("/getStatus").post(function (req, res) {
           res.json(result.Status);
         });
    });
-
    dashboardRoutes.route("/getArrivalDate").post(function (req, res) {
     let db_connect = dbo.getDb();
     let myquery = { Name: req.body.Name
