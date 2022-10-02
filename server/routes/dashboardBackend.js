@@ -67,7 +67,7 @@ dashboardRoutes.route("/AddCompletion").post(function (req, res) {
     let db_connect = dbo.getDb();
     let myquery = { 
         Name: req.body.Name,
-        PSA_supervisor: req.body.PSA_supervisor,
+        // PSA_supervisor: req.body.PSA_supervisor,
         Status: "At Workplace" 
     }; 
     let newvalues = {   
@@ -88,6 +88,60 @@ dashboardRoutes.route("/AddCompletion").post(function (req, res) {
           });
 });
 
+dashboardRoutes.route("/AddWorkplace").post(function (req, res) {
+    let db_connect = dbo.getDb();
+    let myquery = { 
+        Name: req.body.Name,
+        Company:req.body.Company,
+        Phone_Number: req.body.Phone_Number,
+        PSA_supervisor: req.body.PSA_supervisor,
+        Status: "Registered"
+    }; 
+    let newvalues = {   
+      $set: {     
+        Status:"At Workplace"
+      }, 
+     }
+    db_connect
+        .collection("Dashboard")
+        .updateOne(myquery,newvalues,function(err,result){
+            if (err){
+              res.status(400).send('error updating data with id ${myquery.id}!');
+            }
+            else{
+                res.send("Status Changed from from Registered to At Workplace");
+              console.log("Status Changed from Registered to At Workplaces")
+            }
+          });
+});
+
+
+dashboardRoutes.route("/Checkin").post(function (req, res) {
+    let db_connect = dbo.getDb();
+    let myquery = { 
+        Name: req.body.Name,
+        Company: req.body.Company,
+        Status: "Registered" 
+    }; 
+    let newvalues = {   
+      $set: {     
+        Status:"At Workplace",
+        Actual_Start_Time: getCurrentTime()
+      }, 
+     }
+    db_connect
+        .collection("Dashboard")
+        .updateOne(myquery,newvalues,function(err,result){
+            if (err){
+              res.status(400).send('error updating data with id ${myquery.id}!');
+            }
+            else{
+            res.send("Status Changed from to Completion to Checked-Out")
+              console.log("Status Changed from to Completion to Checked-Out")
+            }
+          });
+});
+
 
 dashboardRoutes.route("/").get(function (req, res) {
     let db_connect = dbo.getDb();
@@ -102,8 +156,7 @@ dashboardRoutes.route("/").get(function (req, res) {
 
 dashboardRoutes.route("/getStatus").post(function (req, res) {
     let db_connect = dbo.getDb();
-    let myquery = { Name: req.body.Name,
-                    PSA_supervisor: req.body.PSA_supervisor
+    let myquery = { Name: req.body.Name
                     };
     db_connect
         .collection("Dashboard")
