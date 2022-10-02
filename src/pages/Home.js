@@ -21,10 +21,8 @@ const DashboardHeader = (props) => (
       <td>
       <button id="inbutton" className="btn btn-link"
     //   EDIT THIS FUNCTION
-        onClick={() => {
-        //    props.editRecordIn(props.record.name,props.record.Company).then(window.location.reload());
-           props.editRecordIn(props.record.name,props.record.Company);
-        //    .then(countdown(1800));
+       onClick={() => {
+         props.editRecordIn(props.record.name,props.record.Company,props.record.Phone_Number).then(window.location.reload());
          
        }}
      >
@@ -32,7 +30,7 @@ const DashboardHeader = (props) => (
         </button>
         <button id="outbutton" className="btn btn-link"
        onClick={() => {
-         props.editRecordOut(props.record.name,props.record.Company).then(window.location.reload());
+         props.editRecordOut(props.record.name,props.record.Company,props.record.Phone_Number).then(window.location.reload());
        }}
      >
        Out
@@ -69,14 +67,14 @@ export default function Home() {
     return dbrecord.map((records) => {
       return (
         <DashboardHeader
-          editRecordIn={() => editRecordIn(records.Name, records.Company)}
-          editRecordOut={() => editRecordOut(records.Name, records.Company)}
+          editRecordIn={() => editRecordIn(records.Name, records.Company,records.Phone_Number)}
+          editRecordOut={() => editRecordOut(records.Name, records.Company,records.Phone_Number)}
           record={records}
         />
       );
     });
   }
-  async function editRecordIn(name, company) {
+  async function editRecordIn(name, company,phone) {
     const response = await fetch("http://localhost:5000/Dashboard/Checkin", {
       method: "POST",
       headers: {
@@ -84,7 +82,9 @@ export default function Home() {
       },
       body: JSON.stringify({
         Name: name,
-        Company: company
+        Company: company,
+        Phone_Number: phone,
+     
       })
     })
 
@@ -151,7 +151,7 @@ export default function Home() {
 
     
   }
-  async function editRecordOut(name, company) {
+  async function editRecordOut(name, company,phone) {
     const response = await fetch("http://localhost:5000/Dashboard/Checkout", {
       method: "POST",
       headers: {
@@ -159,7 +159,8 @@ export default function Home() {
       },
       body: JSON.stringify({
         Name: name,
-        Company: company
+        Company: company,
+        Phone_Number: phone
       })
     })
 
