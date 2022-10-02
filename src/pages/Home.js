@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import './Home.css';
-import '../components/timer.js'
+import {countdown, stopTimer, delay} from '../components/timer.js'
 
 const DashboardHeader = (props) => (
     <tr id="entries">
@@ -62,7 +62,6 @@ export default function Home() {
     return;
   }, [dbrecord.length]);
 
-
   // This method will map out the records on the table
   function dashboardRecordList() {
     return dbrecord.map((records) => {
@@ -95,27 +94,60 @@ export default function Home() {
       return;
       
     }
-  //   const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(
-  //      { Name: name,
-  //     }),
-  //   }).catch(error => {
-  //     window.alert(error);
-  //     return;
-  //   })
-  // console.log(statusReceived);
-  // if((statusReceived=="Registered") || (statusReceived== "At Workplace")){
-  //     console.log("if Registers/ at workplace")
-  //     window.alert("Status Changed to At Workplace")
-  // }
-  // else{
-  //     console.log("else")
-  //     window.alert("Visitors already Working")
-  // }
+    const statusReceived = await fetch("http://localhost:5000/Dashboard/getArrivalDate", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(
+       { Name: name
+      }),
+    }).then(response => {
+        return response.json();
+      }).then(data => {
+        // Work with JSON data here
+        console.log(data)
+        var strTime = String(data.arrival)
+        console.log(strTime)
+        var frontpart = strTime.substring(0,2)
+        var backpart = strTime.substring(2,strTime.length)
+        console.log(frontpart)
+        var checkintime = new Date(data.date+" "+frontpart+":"+backpart)
+        console.log(checkintime)
+        var cdtime = new Date(checkintime.getTime()+ 30*60000).getTime();
+        console.log(cdtime)
+        // timer function
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+          
+            // Find the distance between now and the count down date
+            var distance = cdtime - now;
+            console.log("help: "+distance)
+            // Time calculations for days, hours, minutes and seconds
+            
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            // var minutes = Math.floor(distance);
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+          
+            // Display the result in the element with id="demo"
+            document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+          
+            // If the count down is finished, write some text
+            if (distance < 0) {
+              clearInterval(x);
+              document.getElementById("timer").innerHTML = "EXPIRED";
+            }
+          }, 1000)
+
+
+    
+    
+    }).catch(error => {
+      window.alert(error);
+      return;
+    })
 
     
   }
@@ -189,5 +221,3 @@ export default function Home() {
     </div>
   );
 }
-
-
