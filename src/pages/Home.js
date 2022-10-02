@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import './Home.css';
 import {countdown, stopTimer, delay} from '../components/timer.js'
 
+// asd = timerInterval(props.record.timerInterval)
 const DashboardHeader = (props) => (
+  // var asd = timerInterval(props.record.timerInterval);s
     <tr id="entries">
       <td>{props.record.Date}</td>
       <td>{props.record.Name}</td>
@@ -17,12 +19,17 @@ const DashboardHeader = (props) => (
       <td>{props.record.Location}</td>
       <td>{props.record.Number_of_People}</td>
       <td>{props.record.Status}</td>
-      <td id="timer"></td>
+      {/* <td id="timer"> */}
+        {/* timerInterval(props.record.timerInterval) */}
+      {/* </td> */}
       <td>
       <button id="inbutton" className="btn btn-link"
     //   EDIT THIS FUNCTION
        onClick={() => {
-         props.editRecordIn(props.record.name,props.record.Company,props.record.Phone_Number).then(window.location.reload());
+        props.editRecordIn(props.record.name,props.record.Company,props.record.Phone_Number).then(window.location.reload());
+        // props.editRecordIn(props.record.name,props.record.Company,props.record.Phone_Number)
+        props.timerInterval(props.record.timerInterval)
+
          
        }}
      >
@@ -69,6 +76,7 @@ export default function Home() {
         <DashboardHeader
           editRecordIn={() => editRecordIn(records.Name, records.Company,records.Phone_Number)}
           editRecordOut={() => editRecordOut(records.Name, records.Company,records.Phone_Number)}
+          timerInterval= {() =>timerInterval(records.timerInterval)}
           record={records}
         />
       );
@@ -104,51 +112,53 @@ export default function Home() {
       }),
     }).then(response => {
         return response.json();
-      }).then(data => {
-        // Work with JSON data here
-        console.log(data)
-        var strTime = String(data.arrival)
-        console.log(strTime)
-        var frontpart = strTime.substring(0,2)
-        var backpart = strTime.substring(2,strTime.length)
-        console.log(frontpart)
-        var checkintime = new Date(data.date+" "+frontpart+":"+backpart)
-        console.log(checkintime)
-        var cdtime = new Date(checkintime.getTime()+ 30*60000).getTime();
-        console.log(cdtime)
-        // timer function
-        var x = setInterval(function() {
+      })
 
-            // Get today's date and time
-            var now = new Date().getTime();
+      // .then(data => {
+      //   // Work with JSON data here
+      //   console.log(data)
+      //   var strTime = String(data.arrival)
+      //   console.log(strTime)
+      //   var frontpart = strTime.substring(0,2)
+      //   var backpart = strTime.substring(2,strTime.length)
+      //   console.log(frontpart)
+      //   var checkintime = new Date(data.date+" "+frontpart+":"+backpart)
+      //   console.log(checkintime)
+      //   var cdtime = new Date(checkintime.getTime()+ 30*60000).getTime();
+      //   console.log(cdtime)
+      //   // timer function
+      //   var x = setInterval(function() {
+
+      //       // Get today's date and time
+      //       var now = new Date().getTime();
           
-            // Find the distance between now and the count down date
-            var distance = cdtime - now;
-            console.log("help: "+distance)
-            // Time calculations for days, hours, minutes and seconds
+      //       // Find the distance between now and the count down date
+      //       var distance = cdtime - now;
+      //       console.log("help: "+distance)
+      //       // Time calculations for days, hours, minutes and seconds
             
-            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            // var minutes = Math.floor(distance);
-            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      //       var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      //       // var minutes = Math.floor(distance);
+      //       var seconds = Math.floor((distance % (1000 * 60)) / 1000);
           
-            // Display the result in the element with id="demo"
-            document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+      //       // Display the result in the element with id="demo"
+      //       document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
           
-            // If the count down is finished, write some text
-            if (distance < 0) {
-              clearInterval(x);
-              document.getElementById("timer").innerHTML = "EXPIRED";
-            }
-          }, 1000)
-
-
-    
-    
-    }).catch(error => {
+      //       // If the count down is finished, write some text
+      //       if (distance < 0) {
+      //         clearInterval(x);
+      //         document.getElementById("timer").innerHTML = "EXPIRED";
+      //       }
+      //     }, 1000)
+      //     return cdtime; 
+    // })
+    .catch(error => {
       window.alert(error);
       return;
     })
 
+
+    console.log(" the status received is", statusReceived);
     
   }
   async function editRecordOut(name, company,phone) {
@@ -172,11 +182,35 @@ export default function Home() {
   
   }
 
+  function timerInterval(cdtime){
+    var x = setInterval(function() {
+
+      // Get today's date and time
+      var now = new Date().getTime();
+    
+      // Find the distance between now and the count down date
+      var distance = cdtime - now;
+      console.log("help: "+distance)
+      // Time calculations for days, hours, minutes and seconds
+      
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      // var minutes = Math.floor(distance);
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+      // Display the result in the element with id="demo"
+      document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+    
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "EXPIRED";
+      }
+    }, 1000)
+  }
+
 
   return (
     <section class="backgrd">
-
- 
     <div>
       <div class="title">PSA Visitors Dashboard</div>
       <table class="dashtable" className="table table-striped" style={{ marginTop: 0 }}>
@@ -195,7 +229,7 @@ export default function Home() {
       <td>Location</td>
       <td>Number of People</td>
       <td>Current Status</td>
-      <td>Timer</td> 
+      {/* <td>Timer</td>  */}
       <td>Confirm Checkin / Checkout</td>   
           </tr>
         </thead>
@@ -204,4 +238,30 @@ export default function Home() {
     </div>
     </section>
   );
+}
+
+function timerInterval(cdtime){
+  var x = setInterval(function() {
+
+    // Get today's date and time
+    var now = new Date().getTime();
+  
+    // Find the distance between now and the count down date
+    var distance = cdtime - now;
+    console.log("help: "+distance)
+    // Time calculations for days, hours, minutes and seconds
+    
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    // var minutes = Math.floor(distance);
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+    // Display the result in the element with id="demo"
+    document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+  
+    // If the count down is finished, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("timer").innerHTML = "EXPIRED";
+    }
+  }, 1000)
 }
