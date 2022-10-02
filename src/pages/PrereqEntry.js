@@ -29,7 +29,9 @@ export default function PrereqEntry() {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(completedForm),
-        })
+        }).then(
+            window.alert("Form Submitted")
+        )
             .catch(error => {
                 window.alert(error);
                 return;

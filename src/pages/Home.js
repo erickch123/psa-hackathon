@@ -22,14 +22,15 @@ const DashboardHeader = (props) => (
       <button id="inbutton" className="btn btn-link"
     //   EDIT THIS FUNCTION
        onClick={() => {
-         props.editRecord(props.record.name,props.record.Company);
+         props.editRecordIn(props.record.name,props.record.Company).then(window.location.reload());
+         
        }}
      >
        In
         </button>
         <button id="outbutton" className="btn btn-link"
        onClick={() => {
-         props.editRecord(props.record.name,props.record.Company);
+         props.editRecordOut(props.record.name,props.record.Company).then(window.location.reload());
        }}
      >
        Out
@@ -92,27 +93,27 @@ export default function Home() {
       return;
       
     }
-    const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(
-       { Name: name,
-      }),
-    }).catch(error => {
-      window.alert(error);
-      return;
-    })
-  console.log(statusReceived);
-  if(statusReceived=="Registered" || "At Workplace"){
-      console.log("if checkout")
-      window.alert("Status Changed to At Workplace")
-  }
-  else{
-      console.log("else")
-      window.alert("Visitors already Working")
-  }
+  //   const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(
+  //      { Name: name,
+  //     }),
+  //   }).catch(error => {
+  //     window.alert(error);
+  //     return;
+  //   })
+  // console.log(statusReceived);
+  // if((statusReceived=="Registered") || (statusReceived== "At Workplace")){
+  //     console.log("if Registers/ at workplace")
+  //     window.alert("Status Changed to At Workplace")
+  // }
+  // else{
+  //     console.log("else")
+  //     window.alert("Visitors already Working")
+  // }
 
     
   }
@@ -133,27 +134,27 @@ export default function Home() {
       window.alert(message);
       return;
     }
-    const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(
-       { Name: name
-      }),
-    }).catch(error => {
-      window.alert(error);
-      return;
-    })
-  console.log(statusReceived);
-  if(statusReceived=="Completion" || "Checked-Out"){
-      console.log("if checkout")
-      window.alert("Status Changed to Checkout")
-  }
-  else{
-      console.log("else")
-      window.alert("Status is not at Completion yet")
-  }
+  //   const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(
+  //      { Name: name
+  //     }),
+  //   }).catch(error => {
+  //     window.alert(error);
+  //     return;
+  //   })
+  // console.log(statusReceived);
+  // if((statusReceived=="Walking-Out") || (statusReceived=="Checked-Out")){
+  //     console.log("if walking-out/checkout")
+  //     window.alert("Status Changed to Checkout")
+  // }
+  // else{
+  //     console.log("else")
+  //     window.alert("Status is not at Walking Out Yet")
+  // }
   }
 
 
@@ -167,14 +168,14 @@ export default function Home() {
       <td>Name</td>
       <td>Company</td>
       <td>Purpose</td>
-      <td>Scheduled_Arrival_Time</td>
-      <td>Scheduled_Departure_Time</td>
-      <td>Actual_Arrival_Time</td>
-      <td>Actual_End_Time</td>
-      <td>Actual_Arrival_Time</td>
+      <td>Scheduled Arrival Time</td>
+      <td>Scheduled Departure Time</td>
+      <td>Actual_Arrival Time</td>
+      <td>Actual End Time</td>
+      <td>Phone Number</td>
       <td>PSA_Supervisor</td>
       <td>Location</td>
-      <td>Number_of_People</td>
+      <td>Number of People</td>
       <td>Current Status</td>
       <td>Timer</td> 
       <td>Confirm Checkin / Checkout</td>   

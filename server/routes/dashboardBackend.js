@@ -13,6 +13,7 @@ dashboardRoutes.route("/").get(function (req, res) {
         });
 });
 
+
 dashboardRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     let myobj = {
@@ -37,42 +38,17 @@ dashboardRoutes.route("/add").post(function (req, response) {
 });
 
 
-dashboardRoutes.route("/Checkout").post(function (req, res) {
-    let db_connect = dbo.getDb();
-    let myquery = { 
-        Name: req.body.Name,
-        Company: req.body.Company,
-        Status: "Completion" 
-    }; 
-    let newvalues = {   
-      $set: {     
-        Status:"Checked-Out",
-        Actual_End_Time: getCurrentTime()
-      }, 
-     }
-    db_connect
-        .collection("Dashboard")
-        .updateOne(myquery,newvalues,function(err,result){
-            if (err){
-              res.status(400).send('error updating data with id ${myquery.id}!');
-            }
-            else{
-            res.send("Status Changed from to Completion to Checked-Out")
-              console.log("Status Changed from to Completion to Checked-Out")
-            }
-          });
-});
 
 dashboardRoutes.route("/AddCompletion").post(function (req, res) {
     let db_connect = dbo.getDb();
     let myquery = { 
         Name: req.body.Name,
-        // PSA_supervisor: req.body.PSA_supervisor,
-        Status: "At Workplace" 
+        PSA_supervisor: req.body.PSA_supervisor,
+        Status: "Waiting-For-Dismissal" 
     }; 
     let newvalues = {   
       $set: {     
-        Status:"Completion"
+        Status:"Walking-Out"
       }, 
      }
     db_connect
@@ -82,8 +58,8 @@ dashboardRoutes.route("/AddCompletion").post(function (req, res) {
               res.status(400).send('error updating data with id ${myquery.id}!');
             }
             else{
-                res.send("Status Changed from to at At Workplace to Completion");
-              console.log("Status Changed from to at At Workplace to Completion")
+                res.send("Status Changed from Waiting-For-Dismissal to Walking-Out");
+              console.log("Status Changed from Waiting-For-Dismissal to Walking-Out")
             }
           });
 });
@@ -95,11 +71,11 @@ dashboardRoutes.route("/AddWorkplace").post(function (req, res) {
         Company:req.body.Company,
         Phone_Number: req.body.Phone_Number,
         PSA_supervisor: req.body.PSA_supervisor,
-        Status: "Registered"
+        Status: "At Workplace"
     }; 
     let newvalues = {   
       $set: {     
-        Status:"At Workplace"
+        Status:"Waiting-For-Dismissal"
       }, 
      }
     db_connect
@@ -109,8 +85,8 @@ dashboardRoutes.route("/AddWorkplace").post(function (req, res) {
               res.status(400).send('error updating data with id ${myquery.id}!');
             }
             else{
-                res.send("Status Changed from from Registered to At Workplace");
-              console.log("Status Changed from Registered to At Workplaces")
+                res.send("Status Changed from from At Workplace to Waiting-For-Dismissal");
+              console.log("Status Changed from from At Workplace to Waiting-For-Dismissal")
             }
           });
 });
@@ -126,7 +102,7 @@ dashboardRoutes.route("/Checkin").post(function (req, res) {
     let newvalues = {   
       $set: {     
         Status:"At Workplace",
-        Actual_Start_Time: getCurrentTime()
+        Actual_Arrival_Time: getCurrentTime()
       }, 
      }
     db_connect
@@ -142,17 +118,33 @@ dashboardRoutes.route("/Checkin").post(function (req, res) {
           });
 });
 
-
-dashboardRoutes.route("/").get(function (req, res) {
-    let db_connect = dbo.getDb();
-    db_connect
-        .collection("Dashboard")
-        .find({})
-        .toArray(function (err, result) {
-            if (err) throw err;
-            res.json(result);
+dashboardRoutes.route("/Checkout").post(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { 
+      Name: req.body.Name,
+      Company: req.body.Company,
+      Status: "Walking-Out" 
+  }; 
+  let newvalues = {   
+    $set: {     
+      Status:"Checked-Out",
+      Actual_End_Time: getCurrentTime()
+    }, 
+   }
+  db_connect
+      .collection("Dashboard")
+      .updateOne(myquery,newvalues,function(err,result){
+          if (err){
+            res.status(400).send('error updating data with id ${myquery.id}!');
+          }
+          else{
+          res.send("Status Changed from to Completion to Checked-Out")
+            console.log("Status Changed from to Completion to Checked-Out")
+          }
         });
 });
+
+
 
 dashboardRoutes.route("/getStatus").post(function (req, res) {
     let db_connect = dbo.getDb();
@@ -171,12 +163,16 @@ function getCurrentTime(){
     var hours = today.getHours()
     var minutes = today.getMinutes()
     if(hours<10){
-        hours = "0"+hours
+        hours = "0",hours
     }
     if(minutes<10){
-        minutes = "0"+minutes
+        minutes = "0",minutes
     }
-    return hours+minutes
+    console.log(hours)
+    console.log(minutes)
+    var result = (""+hours+minutes)
+    console.log(result)
+    return result
 }
 function getTodayDate(){
     var today = new Date();

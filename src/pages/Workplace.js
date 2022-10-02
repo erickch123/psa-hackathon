@@ -14,14 +14,15 @@ export default function Workplace() {
     async function onSubmit(e) {
         e.preventDefault();
         const completedForm = { ...form };
+        console.log(completedForm)
         const testtt = await fetch("http://localhost:5000/Dashboard/AddWorkplace", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(completedForm),
-        })
-        console.log(testtt)
+        }).then((window.alert("Form Submitted")))
+
             .catch(error => {
                 window.alert(error);
                 return;
@@ -32,26 +33,27 @@ export default function Workplace() {
             Phone_Number: "",
             PSA_supervisor: "",
         })
+        
 
-        const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(completedForm),
-        }).catch(error => {
-            window.alert(error);
-            return;
-        })
-        console.log(statusReceived);
-        if (statusReceived == "At Workplace" || "Registered") {
-            console.log("if completion")
-            window.alert("Status Changed to At Workplace")
-        }
-        else {
-            console.log("else")
-            window.alert("Status is not at Workplace")
-        }
+        // const statusReceived = await fetch("http://localhost:5000/Dashboard/getStatus", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(completedForm),
+        // }).catch(error => {
+        //     window.alert(error);
+        //     return;
+        // })
+        // console.log(statusReceived);
+        // if (statusReceived == "At Workplace" || "Registered") {
+        //     console.log("if completion")
+        //     window.alert("Status Changed to At Workplace")
+        // }
+        // else {
+        //     console.log("else")
+        //     window.alert("Status is not at Workplace")
+        // }
 
     }
     return (
