@@ -1,5 +1,6 @@
 section {
     text-align: center;
+    margin-top: 2em;
 }
 
 #submitbutton {
@@ -7,4 +8,8 @@ section {
     border: 2px solid Black;
     color: white;
     background-color: #4b4099;
+}
+
+.adj {
+    display: inline-block;
 }
