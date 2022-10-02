@@ -1,7 +1,7 @@
-function countdown(n) {
+export function countdown(n) {
   var timerid = 0
   // timer, countdown from 90 secs
-  var counter = document.getElementById("counter");
+  var counter = document.getElementById("timer");
   var seconds = n;
   function tick() {
       seconds--;
@@ -9,20 +9,21 @@ function countdown(n) {
       if (seconds > 0) {
           timerid = setTimeout(tick, 1000);
       } else {
-          document.getElementById("counter").innerHTML = "TIMES UP!!!";
+          document.getElementById("timer").innerHTML = "TIMES UP!!!";
       }
   }
   tick();
+  
 }
 
-function stopTimer() {
+export function stopTimer() {
   // stop the timer
   // clearTimeout(timerid);
   document.getElementById("counter").innerHTML = "Timer Stopped"
   delay(1000).then(() => document.getElementById("counter").innerHTML = "Timer")
 }
 
-function delay(time) {
+export function delay(time) {
   // transition added from "time's up" to "timer" 
   return new Promise(resolve => setTimeout(resolve, time));
 }
