@@ -1,10 +1,11 @@
-const accountSid = 'AC05228fb8f6ecabde4276ceeeaab88ddc'; // Your Account SID from www.twilio.com/console
-const authToken = '3a1231cdb7fd688084a38936d51ea256'; // Your Auth Token from www.twilio.com/console
+const accountSid = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'; // Your Account SID from www.twilio.com/console
+const authToken = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'; // Your Auth Token from www.twilio.com/console
+
 
 const client = require('twilio')(accountSid, authToken); 
 
 
-var phonenums = ['+6582982984']
+var phonenums = ['+65xxxxxxxx']
 
 function delay(time) {
     return new Promise(resolve => setTimeout(resolve, time));
